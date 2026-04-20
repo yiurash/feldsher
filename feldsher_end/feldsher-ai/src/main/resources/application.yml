@@ -3,11 +3,6 @@ spring:
     name: feldsher-ai
   profiles:
     active: dev
-
-server:
-  port: 8080
-
-spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/feldsher?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
@@ -26,6 +21,15 @@ spring:
           max-wait: -1ms
           max-idle: 8
           min-idle: 0
+  ai:
+    dashscope:
+      api-key: your-dashscope-api-key
+      chat:
+        options:
+          model: qwen-max
+
+server:
+  port: 8080
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
@@ -62,11 +66,3 @@ password:
     - password123
     - admin123
     - root123456
-
-spring:
-  ai:
-    dashscope:
-      api-key: your-dashscope-api-key
-      chat:
-        options:
-          model: qwen-max
