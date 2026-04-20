@@ -22,11 +22,12 @@ spring:
           max-idle: 8
           min-idle: 0
   ai:
-    dashscope:
-      api-key: your-dashscope-api-key
+    openai:
+      api-key: ${AI_API_KEY:your-api-key}
+      base-url: ${AI_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
       chat:
         options:
-          model: qwen-max
+          model: ${AI_MODEL:qwen-max}
 
 server:
   port: 8080
