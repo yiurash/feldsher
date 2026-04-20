@@ -17,7 +17,7 @@ import com.feldsher.user.vo.LoginVO;
 import com.feldsher.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
+import cn.hutool.core.util.StrUtil;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -55,7 +55,7 @@ public class AuthServiceImpl implements AuthService {
         String password = registerDTO.getPassword();
         String confirmPassword = registerDTO.getConfirmPassword();
 
-        if (!StringUtils.equals(password, confirmPassword)) {
+        if (!StrUtil.equals(password, confirmPassword)) {
             throw new BusinessException(400, "两次输入的密码不一致");
         }
 
@@ -71,7 +71,7 @@ public class AuthServiceImpl implements AuthService {
         SysUser user = new SysUser();
         user.setPhone(phone);
         user.setPassword(passwordEncoder.encode(password));
-        user.setNickname(StringUtils.isNotBlank(registerDTO.getNickname()) ? registerDTO.getNickname() : "用户" + phone.substring(7));
+        user.setNickname(StrUtil.isNotBlank(registerDTO.getNickname()) ? registerDTO.getNickname() : "用户" + phone.substring(7));
         user.setStatus(1);
         user.setCreateTime(LocalDateTime.now());
         user.setUpdateTime(LocalDateTime.now());
@@ -132,7 +132,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void logout(String token) {
-        if (StringUtils.isNotBlank(token)) {
+        if (StrUtil.isNotBlank(token)) {
             try {
                 if (jwtUtil.validateToken(token)) {
                     Long userId = jwtUtil.getUserId(token);

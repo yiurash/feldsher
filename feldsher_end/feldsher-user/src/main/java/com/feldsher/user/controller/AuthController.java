@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
+import cn.hutool.core.util.StrUtil;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,7 +61,7 @@ public class AuthController {
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(jwtProperties.getHeader());
         String prefix = jwtProperties.getPrefix();
-        if (StringUtils.isNotBlank(bearerToken) && bearerToken.startsWith(prefix)) {
+        if (StrUtil.isNotBlank(bearerToken) && bearerToken.startsWith(prefix)) {
             return bearerToken.substring(prefix.length()).trim();
         }
         return null;
