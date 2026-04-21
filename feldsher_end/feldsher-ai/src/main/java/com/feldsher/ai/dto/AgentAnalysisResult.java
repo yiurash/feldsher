@@ -20,6 +20,7 @@ public class AgentAnalysisResult {
     private String reasoning;
     private String nextAction;
     private String immediateResponse;
+    private String phase;
     private List<Question> questions;
     private CollectedData collectedData;
     private Double progress;

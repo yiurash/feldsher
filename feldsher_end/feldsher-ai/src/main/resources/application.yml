@@ -23,7 +23,7 @@ spring:
           min-idle: 0
   ai:
     openai:
-      api-key: ${AI_API_KEY:your-api-key}
+      api-key: ${AI_API_KEY:sk-0af239e7fea14194bd4d8ef38532d064}
       base-url: ${AI_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
       chat:
         options:
