@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: feldsher-ai-test
+  ai:
+    openai:
+      api-key: ${AI_API_KEY:sk-0af239e7fea14194bd4d8ef38532d064}
+      base-url: ${AI_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+      chat:
+        options:
+          model: ${AI_MODEL:qwen-max}
+          temperature: 0.7
+          max-tokens: 4096
+
+server:
+  port: 8081
+
+logging:
+  level:
+    com.feldsher: DEBUG
+    org.springframework.ai: DEBUG
