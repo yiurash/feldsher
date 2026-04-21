@@ -1,0 +1,69 @@
+spring:
+  application:
+    name: feldsher-ai
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/feldsher?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 
+      database: 0
+      timeout: 10000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1ms
+          max-idle: 8
+          min-idle: 0
+  ai:
+    openai:
+      api-key: ${AI_API_KEY:your-api-key}
+      base-url: ${AI_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+      chat:
+        options:
+          model: ${AI_MODEL:qwen-max}
+
+server:
+  port: 8080
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.feldsher.user.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+jwt:
+  secret: feldsher-jwt-secret-key-2026-very-long-secret-key-for-security-20260419
+  expiration: 86400000
+  header: Authorization
+  prefix: Bearer 
+
+password:
+  min-length: 8
+  max-length: 20
+  require-digit: true
+  require-lowercase: true
+  require-uppercase: false
+  require-special: false
+  weak-passwords:
+    - 12345678
+    - 123456789
+    - qwerty123
+    - asdf1234
+    - password
+    - password123
+    - admin123
+    - root123456
